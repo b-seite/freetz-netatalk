@@ -1,5 +1,5 @@
 config FREETZ_PACKAGE_NETATALK
-	bool "Netatalk 2.1.4"
+	bool "Netatalk 2.2alpha3"
 	select FREETZ_LIB_libdb
 	select FREETZ_LIB_libgcrypt
 	select FREETZ_LIB_libgcrypt_WITH_SYMMETRIC_CIPHER_cast5
