@@ -36,7 +36,9 @@ sec_end
 sec_begin '$(lang de:"Benutzer" en:"Users")'
 
 cat << EOF
+<p>
 $(lang de:"Benutzer werden wie folgt angelegt und persistent gespeichert" en:"Create and persistently save users as follows"):
+</p>
 <ol>
 <li>adduser -g 'Homer Simpson' hsimpson</li>
 <li>modusers save</li>
