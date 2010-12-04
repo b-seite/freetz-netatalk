@@ -29,15 +29,15 @@ $(PKG)_CONFIGURE_OPTIONS +=--disable-admin-group
 $(PKG)_CONFIGURE_OPTIONS +=--disable-shell-check
 $(PKG)_CONFIGURE_OPTIONS +=--disable-tcp-wrappers
 $(PKG)_CONFIGURE_OPTIONS +=--with-cnid-default-backend=dbd
+$(PKG)_CONFIGURE_OPTIONS +=--with-cnid-dbd-backend
+$(PKG)_CONFIGURE_OPTIONS +=--with-cnid-cdb-backend
+$(PKG)_CONFIGURE_OPTIONS +=--with-cnid-tdb-backend
+$(PKG)_CONFIGURE_OPTIONS +=--without-cnid-last-backend
 $(PKG)_CONFIGURE_OPTIONS +=--with-uams-path="/usr/lib/freetz"
 $(PKG)_CONFIGURE_OPTIONS +=--with-bdb="$(TARGET_TOOLCHAIN_STAGING_DIR)/usr"
 $(PKG)_CONFIGURE_OPTIONS +=--with-libgcrypt-dir="$(TARGET_TOOLCHAIN_STAGING_DIR)/usr"
 $(PKG)_CONFIGURE_OPTIONS +=--sysconfdir="/mod/etc"
 # $(PKG)_CONFIGURE_OPTIONS +=--disable-debugging
-
-# $(PKG)_CONFIGURE_OPTIONS +=--disable-locking
-# $(PKG)_CONFIGURE_OPTIONS +=--disable-sendfile
-# $(PKG)_CONFIGURE_OPTIONS +=--with-shadow
 
 $(PKG_SOURCE_DOWNLOAD)
 $(PKG_UNPACKED)
