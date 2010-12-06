@@ -5,7 +5,7 @@ If you don't speak German but would like to work on this project, please let me 
 
 h2. Stand der Dinge
 
-Netatalk ist im Beta-Test. Bitte Probleme und Anregungen im "Bugtracker Github Issues":https://github.com/svoop/freetz-netatalk/issues erfassen, zuerst aber unbedingt "Bekannte Einschränkungen" weiter unten lesen!
+Netatalk ist im Beta-Test. Bitte Probleme und Anregungen im "Bugtracker Github Issues":https://github.com/svoop/freetz-netatalk/issues erfassen, zuerst aber unbedingt "Konfiguration" weiter unten lesen!
 
 Wer bereits eine Netatalk-Version von vor dem 4.12.2010 installiert hat, muss zusätzlich folgende Kommandos ausführen, um libdb zu patchen und neu zu bauen:
 
