@@ -5,7 +5,13 @@ If you don't speak German but would like to work on this project, please let me 
 
 h2. Stand der Dinge
 
-Alle Binaries kompilieren und werden korrekt installiert. Das CGI ist auch gemacht, Netatalk lässt sich also über das Freetz-Webinterface konfigurieren, starten und stoppen. Das Mounten als Gast oder als User ist möglich.
+Netatalk ist im Beta-Test. Bitte Probleme und Anregungen im "Bugtracker Github Issues":https://github.com/svoop/freetz-netatalk/issues erfassen, zuerst aber unbedingt "Bekannte Einschränkungen" weiter unten lesen!
+
+Wer bereits eine Netatalk-Version von vor dem 4.12.2010 installiert hat, muss zusätzlich folgende Kommandos ausführen, um libdb zu patchen und neu zu bauen:
+pre. 
+cd freetz/trunk
+sed -i 's%enable-smallbuild%enable-smallbuild\n$(PKG)_CONFIGURE_OPTIONS += --with-mutex=MIPS/gcc-assembly%' make/libs/db.mk
+make db-dirclean
 
 
 h2. Leute
@@ -31,13 +37,21 @@ sed -i 's%enable-smallbuild%enable-smallbuild\n$(PKG)_CONFIGURE_OPTIONS += --wit
 cd trunk
 make menuconfig
 
-Die zweite sed-Zeile repariert die Konfiguration der libdb-4.8 (Berkeley-DB), die für das CNID_DBD frontend benötigt wird. Im aktuellen freetz trunk wird die libdb so konfiguriert, dass MUTEX Unterstützung nicht funktioniert. Dies wird hier korrigiert. Die libdb muss entsprechend neu gebaut werden.
 
 h2. Pakete
 
 pre. 
 FREETZ_PACKAGE_NETATALK
   Package selection -> Testing -> Netatalk
+
+
+h2. Bekannte Einschränkungen
+
+AFP (Netatalk) unterscheidet sich fundamental von SMB (Samba)! Der wichtigste Unterschied besteht darin, dass AFP zum Referenzieren der Dateien und Verzeichnisse nicht die Pfade, sondern eine in gewisser Weise redundante CNID (Catalog Node ID) benutzt. Für das Mapping zwischen Pfad und CNID wird eine Datenbank im Verzeichnis @.AppleDB@ angelegt.
+
+Diese Datenbank ist natürlich eine potentielle Fehlerquelle. Sehr schlecht ist Beispielsweise ein plötzlicher Tod des Datenbank-Daemons @cnid_dbd@ mit SIGKILL oder durch einen Stromausfall. In diesem Fall muss die Datenbank vor dem nächsten Mounten unbedingt mit @dbd@ repariert werden. Der Prozess darf nur mit SIGTERM abgeschossen werden.
+
+Eine weitere Nebenwirkung ist, dass alle Änderungen am Filesystem via AFP geschehen müssen, d.h. auf ein Share darf nicht gleichzeitig mit AFP und anderen Methoden (SMB, SFTP etc) geschrieben werden, denn nur AFP aktualisiert die CNID Datenbank. Wird z.B. mit SMB eine neue Datei erstellt, ist sie für AFP nicht sichtbar. Künftige Versionen von Netatalk werden möglicherweise einen Filesystem-Crawler beinhalten.
 
 
 h2. Shell
