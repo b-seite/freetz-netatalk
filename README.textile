@@ -7,13 +7,6 @@ h2. Stand der Dinge
 
 Alle Binaries kompilieren und werden korrekt installiert. Das CGI ist auch gemacht, Netatalk lässt sich also über das Freetz-Webinterface konfigurieren, starten und stoppen. Das Mounten als Gast oder als User ist möglich.
 
-Das CNID-Backend "dbd" (Berkeley DB via Daemon) funktioniert nicht. Die Datenbank wird auf dem gemounteten Volume nicht angelegt, obwohl die Permissions das zulassen. In der Folge loggt afpd den folgenden Fehler:
-
-pre. 
-dbd_rpc: Error reading header from fd (db_dir /var/media/ftp/uStor01): Resource temporarily unavailable
-
-Das CNID-Backend "tdb" (Samba Trivial Db) funktioniert, ist aber nicht für Volumes geeignet, die mehr als einmal gemountet werden.
-
 
 h2. Leute
 
@@ -34,9 +27,11 @@ svn checkout http://svn.freetz.org/trunk
 git clone git@github.com:{USERNAME}/freetz-netatalk.git netatalk
 ln -s ../../netatalk trunk/make/
 sed -i 's%ncftp/Config.in%ncftp/Config.in\nsource make/netatalk/Config.in%' trunk/make/Config.in
+sed -i 's%enable-smallbuild%enable-smallbuild\n$(PKG)_CONFIGURE_OPTIONS += --with-mutex=MIPS/gcc-assembly%' trunk/make/libs/db.mk
 cd trunk
 make menuconfig
 
+Die zweite sed-Zeile repariert die Konfiguration der libdb-4.8 (Berkeley-DB), die für das CNID_DBD frontend benötigt wird. Im aktuellen freetz trunk wird die libdb so konfiguriert, dass MUTEX Unterstützung nicht funktioniert. Dies wird hier korrigiert. Die libdb muss entsprechend neu gebaut werden.
 
 h2. Pakete
 
