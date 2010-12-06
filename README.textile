@@ -8,6 +8,7 @@ h2. Stand der Dinge
 Netatalk ist im Beta-Test. Bitte Probleme und Anregungen im "Bugtracker Github Issues":https://github.com/svoop/freetz-netatalk/issues erfassen, zuerst aber unbedingt "Bekannte Einschränkungen" weiter unten lesen!
 
 Wer bereits eine Netatalk-Version von vor dem 4.12.2010 installiert hat, muss zusätzlich folgende Kommandos ausführen, um libdb zu patchen und neu zu bauen:
+
 pre. 
 cd freetz/trunk
 sed -i 's%enable-smallbuild%enable-smallbuild\n$(PKG)_CONFIGURE_OPTIONS += --with-mutex=MIPS/gcc-assembly%' make/libs/db.mk
