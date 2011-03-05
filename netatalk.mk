@@ -1,6 +1,6 @@
-$(call PKG_INIT_BIN, 2.2beta1)
+$(call PKG_INIT_BIN, 2.2beta2)
 $(PKG)_SOURCE := $(pkg)-$($(PKG)_VERSION).tar.gz
-$(PKG)_SOURCE_MD5 := 7da6864129fee53a2997524962d4d740
+$(PKG)_SOURCE_MD5 := 3e43fc24d6d14ca6f0d41ce5472d0daf
 $(PKG)_SITE := @SF/netatalk
 
 $(PKG)_LIBS := uams_guest uams_dhx2_passwd
