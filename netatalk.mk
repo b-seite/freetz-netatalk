@@ -30,6 +30,7 @@ $(PKG)_CONFIGURE_OPTIONS +=--disable-timelord
 $(PKG)_CONFIGURE_OPTIONS +=--disable-admin-group
 $(PKG)_CONFIGURE_OPTIONS +=--disable-shell-check
 $(PKG)_CONFIGURE_OPTIONS +=--disable-tcp-wrappers
+$(PKG)_CONFIGURE_OPTIONS +=--without-acls
 $(PKG)_CONFIGURE_OPTIONS +=--with-cnid-default-backend=dbd
 $(PKG)_CONFIGURE_OPTIONS +=--with-cnid-dbd-backend
 $(PKG)_CONFIGURE_OPTIONS +=--with-cnid-tdb-backend
