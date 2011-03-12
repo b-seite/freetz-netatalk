@@ -1,4 +1,4 @@
-$(call PKG_INIT_BIN, 2.2beta3)
+$(call PKG_INIT_BIN, 2.2-beta3)
 $(PKG)_SOURCE := $(pkg)-$($(PKG)_VERSION).tar.gz
 $(PKG)_SOURCE_MD5 := 4e74e091a16e02f4833c70de82d2cc46
 $(PKG)_SITE := @SF/netatalk
